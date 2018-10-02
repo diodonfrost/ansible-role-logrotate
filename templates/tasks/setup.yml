@@ -1,0 +1,10 @@
+---
+# tasks setup for ansible-role-logrotate
+
+- name: Configure logrotate
+  template:
+    src: "logrotate.j2"
+    dest: "{{ logrotate_configfile }}"
+    owner: "{{ logrotate_config_owner }}"
+    group: "{{ logrotate_config_group }}"
+    mode: 0600

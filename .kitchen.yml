@@ -1,0 +1,111 @@
+---
+# we use docker as plateform
+driver:
+  name: docker
+  privileged: true
+  volume: /sys/fs/cgroup:/sys/fs/cgroup
+
+# Ansible will be our provisioner
+provisioner:
+  name: ansible_playbook
+  hosts: localhost
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  require_ansible_omnibus: false
+  idempotency_test: true
+
+# We use Inspec as testing framework
+verifier:
+  name: inspec
+  inspec_tests:
+    - path: tests/inspec
+
+platforms:
+  - name: centos-7-ansible
+    driver:
+      image: diodonfrost/centos-7-ansible
+      run_command: /sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: centos-6-ansible
+    driver:
+      image: diodonfrost/centos-6-ansible
+      platform: centos
+      run_command: /sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-28-ansible
+    driver:
+      image: diodonfrost/fedora-28-ansible
+      run_command: /usr/sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-27-ansible
+    driver:
+      image: diodonfrost/fedora-27-ansible
+      run_command: /usr/sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: fedora-26-ansible
+    driver:
+      image: diodonfrost/fedora-26-ansible
+      run_command: /usr/sbin/init
+      platform: centos
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-18.04-ansible
+    driver:
+      image: diodonfrost/ubuntu-18.04-ansible
+      run_command: /sbin/init
+      platform: ubuntu
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-17.10-ansible
+    driver:
+      image: diodonfrost/ubuntu-17.10-ansible
+      run_command: /sbin/init
+      platform: ubuntu
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-16.04-ansible
+    driver:
+      image: diodonfrost/ubuntu-16.04-ansible
+      run_command: /sbin/init
+      platform: ubuntu
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: ubuntu-14.04-ansible
+    driver:
+      image: diodonfrost/ubuntu-14.04-ansible
+      run_command: /sbin/init
+      platform: ubuntu
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: debian-9-ansible
+    driver:
+      image: diodonfrost/debian-9-ansible
+      run_command: /bin/systemd
+      platform: debian
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: debian-8-ansible
+    driver:
+      image: diodonfrost/debian-8-ansible
+      run_command: /sbin/init
+      platform: debian
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+  - name: debian-7-ansible
+    driver:
+      image: diodonfrost/debian-7-ansible
+      platform: debian
+
+# Define playbook
+suites:
+  - name: default
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/test.yml
