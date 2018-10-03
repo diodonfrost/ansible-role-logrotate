@@ -5,11 +5,16 @@
   apt:
     update_cache: yes
   changed_when: false
-  when: ansible_os_family == "Debin"
+  when: ansible_os_family == "Debian"
 
 - name: install logrotate
   package:
     name: "{{ logrotate_package }}"
+    state: present
+
+- name: install crontab
+  package:
+    name: "{{ crontab_package }}"
     state: present
 
 - name: Ensure logrotate is present in crontab

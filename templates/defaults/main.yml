@@ -1,9 +1,0 @@
----
-# defaults file for ansible-role-logrotate
-
-# define logrotate crontab job
-logrotate_minute: "10"
-logrotate_hour: "2"
-logrotate_day: "*"
-logrotate_weekday: "*"
-logrotate_month: "*"
