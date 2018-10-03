@@ -1,5 +1,8 @@
 # logrotate
 
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.logrotate-660198.svg)](https://galaxy.ansible.com/diodonfrost/logrotate)
+[![Build Status](https://travis-ci.org/diodonfrost/ansible-role-logrotate.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-logrotate)
+
 This role provide compliance for install and setup logroate on your target host.
 
 ## Requirements
@@ -45,7 +48,7 @@ None
 
 ## Example Playbook
 
-This is a sample playbook file for deploying the Ansible Galaxy mariadb role in a localhost and installing logrotate.
+This is a sample playbook file for deploying the Ansible Galaxy logrotate role in a localhost and installing logrotate.
 
 ```yaml
 ---
@@ -100,7 +103,7 @@ set KITCHEN_YAML=.kitchen-vagrant.yml
 
 # fast test on one machine
 kitchen test default-centos-7
-
+```
 
 ## License
 
