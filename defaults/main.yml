@@ -7,3 +7,11 @@ logrotate_hour: "2"
 logrotate_day: "*"
 logrotate_weekday: "*"
 logrotate_month: "*"
+
+# Add custom settings in logroate configfile.
+# Example:
+# logroate_custom_options:
+#   - noop = enabled
+#   - report = true
+#   - daemonize = false
+logroate_custom_options: []
