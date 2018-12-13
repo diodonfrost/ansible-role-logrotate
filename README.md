@@ -15,10 +15,11 @@ Supported platforms:
 ```yaml
 - name: EL
   versions:
-    - 6
     - 7
+    - 6
 - name: Fedora
   versions:
+    - 29
     - 28
     - 27
     - 26
@@ -26,13 +27,34 @@ Supported platforms:
   versions:
     - stretch
     - jessie
+    - wheezy
+    - squeeze
 - name: Ubuntu
   versions:
     - bionic
-    - artful
     - xenial
     - trusty
     - precise
+- name: OracleLinux
+  versions:
+    - 7
+    - 6
+- name: Amazon
+  versions:
+    - 2017.12
+    - 2016.03
+    - 2013.09
+- name: opensuse
+  versions:
+    - 13.2
+    - 42.1
+    - 42.2
+    - 42.3
+- name: SLES
+  versions:
+    - 11
+    - 12
+    - 15
 ```
 
 ## Role Variables
@@ -79,6 +101,33 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
               - missingok
               - notifempty
               - create 0640 nginx nginx
+```
+
+## Role Variables
+
+This role has multiple variables. The defaults for all these variables are the following:
+
+```yaml
+---
+# defaults file for ansible-role-logrotate
+
+# define logrotate crontab job
+logrotate_minute: "10"
+logrotate_hour: "2"
+logrotate_day: "*"
+logrotate_weekday: "*"
+logrotate_month: "*"
+
+# Add custom settings in logroate configfile.
+# Example:
+# logroate_custom_options:
+#   - noop = enabled
+#   - report = true
+#   - daemonize = false
+logrotate_custom_options: []
+
+# Set logroate application configurations
+logrotate_applications: []
 ```
 
 ## Local Testing

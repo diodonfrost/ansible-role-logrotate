@@ -14,7 +14,7 @@ logrotate_month: "*"
 #   - noop = enabled
 #   - report = true
 #   - daemonize = false
-logroate_custom_options: []
+logrotate_custom_options: []
 
 # Set logroate application configurations
 logrotate_applications: []
