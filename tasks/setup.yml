@@ -8,3 +8,13 @@
     owner: "{{ logrotate_config_owner }}"
     group: "{{ logrotate_config_group }}"
     mode: 0600
+
+- name: Create logrotate application configuration files
+  template:
+    src: application.j2
+    dest: "{{ logrotate_include_file }}/{{ item.name }}"
+    owner: "{{ logrotate_config_owner }}"
+    group: "{{ logrotate_config_group }}"
+    mode: 0600
+  with_items:
+    - '{{ logrotate_applications }}'

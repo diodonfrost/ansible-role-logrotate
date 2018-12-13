@@ -15,3 +15,6 @@ logrotate_month: "*"
 #   - report = true
 #   - daemonize = false
 logroate_custom_options: []
+
+# Set logroate application configurations
+logrotate_applications: []

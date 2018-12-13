@@ -3,3 +3,17 @@
   remote_user: root
   roles:
     - ansible-role-logrotate
+  vars:
+    logrotate_applications:
+      - name: nginx
+        definitions:
+          - logs:
+              - '/var/log/nginx/nginx.log'
+            options:
+              - weekly
+              - rotate 13
+              - compress
+              - delaycompress
+              - missingok
+              - notifempty
+              - create 0640 www-data adm

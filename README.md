@@ -53,9 +53,32 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
 ```yaml
 ---
 - hosts: localhost
-  become: true
+  remote_user: root
   roles:
     - role: diodonfrost.logrotate
+```
+
+#### Example with nginx logs
+
+```yaml
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: diodonfrost.logrotate
+  vars:
+    logrotate_applications:
+      - name: nginx
+        definitions:
+          - logs:
+              - '/var/log/nginx/nginx.log'
+            options:
+              - weekly
+              - rotate 13
+              - compress
+              - delaycompress
+              - missingok
+              - notifempty
+              - create 0640 nginx nginx
 ```
 
 ## Local Testing
