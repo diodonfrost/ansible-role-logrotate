@@ -126,7 +126,21 @@ logrotate_month: "*"
 #   - daemonize = false
 logrotate_custom_options: []
 
-# Set logroate application configurations
+# Set logrotate custom application configurations
+# Example:
+#    logrotate_applications:
+#      - name: nginx
+#        definitions:
+#          - logs:
+#              - '/var/log/nginx/nginx.log'
+#            options:
+#              - weekly
+#              - rotate 13
+#              - compress
+#              - delaycompress
+#              - missingok
+#              - notifempty
+#              - create 0640 nginx nginx
 logrotate_applications: []
 ```
 
