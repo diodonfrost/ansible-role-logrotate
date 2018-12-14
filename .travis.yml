@@ -43,6 +43,8 @@ env:
     version: "42.2"
   - distribution: opensuse
     version: "13.2"
+  - distribution: archlinux
+    version: "rolling"
 
 before_install:
   # Build docker container

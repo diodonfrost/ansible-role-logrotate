@@ -1,6 +1,13 @@
 ---
 # tasks setup for ansible-role-logrotate
 
+- name: Ensure logrotate.d directory is present
+  file:
+    path: "{{ logrotate_include_file }}"
+    owner: "{{ logrotate_config_owner }}"
+    group: "{{ logrotate_config_group }}"
+    state: directory
+
 - name: Configure logrotate
   template:
     src: "logrotate.j2"

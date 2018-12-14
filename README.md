@@ -55,6 +55,17 @@ Supported platforms:
     - 11
     - 12
     - 15
+- name: ArchLinux
+  versions:
+    - any
+- name: Gentoo
+  versions:
+    - stage3
+- name: FreeBSD
+  versions:
+    - 11.2
+    - 10.4
+    - 10.3
 ```
 
 ## Role Variables

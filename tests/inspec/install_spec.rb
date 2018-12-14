@@ -2,6 +2,7 @@
 
 logrotate_package = 'logrotate'
 logrotate_crontab_job = '/usr/sbin/logrotate /etc/logrotate.conf'
+logrotate_crontab_job = '/usr/local/sbin/logrotate /etc/logrotate.conf' if os.name == 'freebsd'
 logroate_configfile = '/etc/logrotate.conf'
 
 control 'install-01' do

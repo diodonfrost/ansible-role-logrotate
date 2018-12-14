@@ -1,0 +1,9 @@
+logrotate_package: logrotate
+logrotate_crontab_job: /usr/sbin/logrotate /etc/logrotate.conf
+
+logrotate_configfile: /etc/logrotate.conf
+logrotate_include_file: /etc/logrotate.d
+logrotate_config_owner: root
+logrotate_config_group: root
+
+crontab_package: cron

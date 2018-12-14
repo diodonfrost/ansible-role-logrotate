@@ -40,6 +40,46 @@ platforms:
     driver:
       box: bento/oracle-6
 
+  # Archlinux
+  - name: archlinux-rolling
+    driver:
+      box: archlinux/archlinux
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_archlinux_target.rb
+
+  # Gentoo
+  - name: gentoo
+    driver:
+      box: generic/gentoo
+      customize:
+        memory: 2048
+        cpus: 4
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_gentoo_target.rb
+
+  # FreeBSD
+  - name: freebsd-11.2
+    driver:
+      box: bento/freebsd-11.2
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_freebsd_target.rb
+  - name: freebsd-10.4
+    driver:
+      box: bento/freebsd-10.4
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_freebsd_target.rb
+  - name: freebsd-10.3
+    driver:
+      box: bento/freebsd-10.3
+      provision: true
+      vagrantfiles:
+        - tests/vagrant/vagrant_freebsd_target.rb
+
+
 # Define playbook
 suites:
   - name: default

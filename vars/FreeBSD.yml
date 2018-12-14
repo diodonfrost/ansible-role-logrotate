@@ -1,0 +1,9 @@
+logrotate_package: logrotate
+logrotate_crontab_job: /usr/local/sbin/logrotate /etc/logrotate.conf
+
+logrotate_configfile: /etc/logrotate.conf
+logrotate_include_file: /etc/logrotate.d
+logrotate_config_owner: root
+logrotate_config_group: wheel
+
+crontab_package: py27-crontab
