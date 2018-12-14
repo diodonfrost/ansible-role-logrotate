@@ -70,10 +70,45 @@ Supported platforms:
 
 ## Role Variables
 
+This role has multiple variables. The defaults for all these variables are the following:
+
 ```yaml
 ---
 # defaults file for ansible-role-logrotate
+
+# define logrotate crontab job
+logrotate_minute: "10"
+logrotate_hour: "2"
+logrotate_day: "*"
+logrotate_weekday: "*"
+logrotate_month: "*"
+
+# Add custom settings in logroate configfile.
+# Example:
+# logroate_custom_options:
+#   - noop = enabled
+#   - report = true
+#   - daemonize = false
+logrotate_custom_options: []
+
+# Set logrotate custom application configurations
+# Example:
+#    logrotate_applications:
+#      - name: nginx
+#        definitions:
+#          - logs:
+#              - '/var/log/nginx/nginx.log'
+#            options:
+#              - weekly
+#              - rotate 13
+#              - compress
+#              - delaycompress
+#              - missingok
+#              - notifempty
+#              - create 0640 nginx nginx
+logrotate_applications: []
 ```
+
 
 ## Dependencies
 
@@ -112,33 +147,6 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
               - missingok
               - notifempty
               - create 0640 nginx nginx
-```
-
-## Role Variables
-
-This role has multiple variables. The defaults for all these variables are the following:
-
-```yaml
----
-# defaults file for ansible-role-logrotate
-
-# define logrotate crontab job
-logrotate_minute: "10"
-logrotate_hour: "2"
-logrotate_day: "*"
-logrotate_weekday: "*"
-logrotate_month: "*"
-
-# Add custom settings in logroate configfile.
-# Example:
-# logroate_custom_options:
-#   - noop = enabled
-#   - report = true
-#   - daemonize = false
-logrotate_custom_options: []
-
-# Set logroate application configurations
-logrotate_applications: []
 ```
 
 ## Local Testing
