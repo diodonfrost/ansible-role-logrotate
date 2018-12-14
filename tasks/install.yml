@@ -1,11 +1,16 @@
 ---
 # tasks install for ansible-role-logrotate
 
-- name: Update apt cache
+- name: Update apt cache on Debian Family os
   apt:
     update_cache: yes
   changed_when: false
   when: ansible_os_family == "Debian"
+
+- name: Update emerge cache on Gentoo
+  shell: emerge-webrsync
+  changed_when: false
+  when: ansible_os_family == "Gentoo"
 
 - name: install logrotate
   package:
