@@ -189,7 +189,7 @@ kitchen verify default-centos-7
 ### Testing with Virtualbox
 
 ```shell
-# Specify kitchen file on Windows
+# Specify kitchen file
 set KITCHEN_YAML=.kitchen-vagrant.yml
 
 # fast test on one machine
