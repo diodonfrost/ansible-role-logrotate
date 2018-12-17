@@ -3,12 +3,12 @@
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.logrotate-660198.svg)](https://galaxy.ansible.com/diodonfrost/logrotate)
 [![Build Status](https://travis-ci.org/diodonfrost/ansible-role-logrotate.svg?branch=master)](https://travis-ci.org/diodonfrost/ansible-role-logrotate)
 
-This role provide compliance for install and setup logroate on your target host.
+This role provide compliance for install and setup logrotate on your target host.
 
 ## Requirements
 
 This role was developed using Ansible 2.4 Backwards compatibility is not guaranteed.
-Use `ansible-galaxy install diodonfrost.logroate` to install the role on your system.
+Use `ansible-galaxy install diodonfrost.logrotate` to install the role on your system.
 
 Supported platforms:
 
@@ -83,9 +83,9 @@ logrotate_day: "*"
 logrotate_weekday: "*"
 logrotate_month: "*"
 
-# Add custom settings in logroate configfile.
+# Add custom settings in logrotate configfile.
 # Example:
-# logroate_custom_options:
+# logrotate_custom_options:
 #   - noop = enabled
 #   - report = true
 #   - daemonize = false
