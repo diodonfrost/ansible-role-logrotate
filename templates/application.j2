@@ -1,4 +1,8 @@
-# {{ ansible_managed }}
+#####################################
+##                                 ##
+## THIS FILE IS MANAGED BY ANSIBLE ##
+##                                 ##
+#####################################
 
 {% for definition in item.definitions %}
 {{ definition.logs | join(" ") }} {
