@@ -25,3 +25,24 @@
     mode: 0600
   with_items:
     - '{{ logrotate_applications }}'
+  when: logrotate_applications is defined
+
+- name: Register Ansible logrotate file name
+  set_fact:
+    logrotate_app: "\
+      {{ logrotate_app | default([]) }} + \
+      [ '{{ item.name }}' ]"
+  with_items: '{{ logrotate_applications }}'
+
+- name: List all logrotate conf file
+  shell: "ls -1 {{ logrotate_include_file }}"
+  register: logrotate_file
+  changed_when: false
+
+- name: Delete logrotate conf file not managed by Ansible
+  file:
+    path: "{{ logrotate_include_file }}/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ logrotate_file.stdout_lines }}"
+  when: item not in logrotate_app
