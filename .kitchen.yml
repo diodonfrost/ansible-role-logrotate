@@ -155,7 +155,12 @@ platforms:
 
 # Define playbook
 suites:
-  - name: default
+  - name: applications-logs
     provisioner:
       name: ansible_playbook
-      playbook: tests/test.yml
+      playbook: tests/playbooks/applications-logs.yml
+
+  - name: no-logs
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/playbooks/no-logs.yml

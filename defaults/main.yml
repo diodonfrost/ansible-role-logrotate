@@ -31,4 +31,4 @@ logrotate_custom_options: []
 #              - missingok
 #              - notifempty
 #              - create 0640 nginx nginx
-logrotate_applications: []
+logrotate_applications: None

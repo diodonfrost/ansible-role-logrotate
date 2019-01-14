@@ -83,9 +83,9 @@ logrotate_day: "*"
 logrotate_weekday: "*"
 logrotate_month: "*"
 
-# Add custom settings in logrotate configfile.
+# Add custom settings in logroate configfile.
 # Example:
-# logrotate_custom_options:
+# logroate_custom_options:
 #   - noop = enabled
 #   - report = true
 #   - daemonize = false
@@ -106,7 +106,7 @@ logrotate_custom_options: []
 #              - missingok
 #              - notifempty
 #              - create 0640 nginx nginx
-logrotate_applications: []
+logrotate_applications: None
 ```
 
 

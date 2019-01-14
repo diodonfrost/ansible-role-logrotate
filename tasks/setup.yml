@@ -50,4 +50,4 @@
         - "{{ logrotate_file.stdout_lines }}"
       when: item not in logrotate_app
 
-  when: logrotate_applications is defined
+  when: logrotate_applications != "None"
