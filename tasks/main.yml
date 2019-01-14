@@ -4,7 +4,7 @@
 - name: Set OS dependent variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: install lograte
+- name: install logrotate
   include_tasks: install.yml
 
 - name: setup logrotate
