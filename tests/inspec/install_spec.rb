@@ -1,4 +1,4 @@
-# Fail2ban  install
+# logrotate  install
 
 logrotate_package = 'logrotate'
 logrotate_crontab_job = '/usr/sbin/logrotate /etc/logrotate.conf'
