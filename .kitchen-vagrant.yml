@@ -1,9 +1,7 @@
 ---
-# we use docker as plateform
 driver:
   name: vagrant
 
-# Ansible will be our provisioner
 provisioner:
   name: ansible_playbook
   hosts: localhost
@@ -12,27 +10,25 @@ provisioner:
   require_ansible_omnibus: false
   idempotency_test: true
 
-# We use Inspec as testing framework
 verifier:
   name: inspec
   inspec_tests:
     - path: tests/inspec
 
-# Build platforms
 platforms:
   # Standard Linux
+  - name: centos-8
   - name: centos-7
   - name: centos-6
   - name: fedora-28
   - name: fedora-27
   - name: fedora-26
   - name: ubuntu-18.04
-  - name: ubuntu-17.10
   - name: ubuntu-16.04
   - name: ubuntu-14.04
+  - name: debian-10
   - name: debian-9
   - name: debian-8
-  - name: debian-7
   - name: oraclelinux-7
     driver:
       box: bento/oracle-7
@@ -79,8 +75,6 @@ platforms:
       vagrantfiles:
         - tests/vagrant/vagrant_freebsd_target.rb
 
-
-# Define playbook
 suites:
   - name: applications-logs
     provisioner:
