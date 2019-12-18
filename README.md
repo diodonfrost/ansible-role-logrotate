@@ -15,20 +15,23 @@ Supported platforms:
 ```yaml
 - name: EL
   versions:
+    - 8
     - 7
     - 6
 - name: Fedora
   versions:
+    - 32
+    - 31
+    - 30
     - 29
     - 28
     - 27
     - 26
 - name: Debian
   versions:
+    - buster
     - stretch
     - jessie
-    - wheezy
-    - squeeze
 - name: Ubuntu
   versions:
     - bionic
@@ -37,6 +40,7 @@ Supported platforms:
     - precise
 - name: OracleLinux
   versions:
+    - 8
     - 7
     - 6
 - name: Amazon
@@ -46,6 +50,7 @@ Supported platforms:
     - 2013.09
 - name: opensuse
   versions:
+    - 15
     - 13.2
     - 42.1
     - 42.2
@@ -149,7 +154,7 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
 The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
 
 You can also use vagrant and Virtualbox with vagrant to run tests locally. You will have to install Virtualbox and Vagrant on your system.
- For all our tests we use test-kitchen.
+For all our tests we use test-kitchen.
 
 Next install test-kitchen:
 
@@ -166,19 +171,19 @@ bundle install
 kitchen list
 
 # fast test on one machine
-kitchen test default-centos-7
+kitchen test default-centos-8
 
 # test on all machines
 kitchen test
 
 # for development, create environment
-kitchen create default-centos-7
+kitchen create default-centos-8
 
 # Apply ansible playbook
-kitchen converge default-centos-7
+kitchen converge default-centos-8
 
 # Apply inspec tests
-kitchen verify default-centos-7
+kitchen verify default-centos-8
 ```
 
 ### Testing with Virtualbox
@@ -188,7 +193,7 @@ kitchen verify default-centos-7
 set KITCHEN_YAML=.kitchen-vagrant.yml
 
 # fast test on one machine
-kitchen test default-centos-7
+kitchen test default-centos-8
 ```
 
 ## License
