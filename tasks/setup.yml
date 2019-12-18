@@ -3,7 +3,7 @@
 
 - name: Ensure logrotate.d directory is present
   file:
-    path: "{{ logrotate_include_file }}"
+    path: "{{ logrotate_conf_dir }}"
     owner: "{{ logrotate_config_owner }}"
     group: "{{ logrotate_config_group }}"
     state: directory
@@ -11,43 +11,41 @@
 - name: Configure logrotate
   template:
     src: "logrotate.j2"
-    dest: "{{ logrotate_configfile }}"
+    dest: "{{ logrotate_conf_file }}"
     owner: "{{ logrotate_config_owner }}"
     group: "{{ logrotate_config_group }}"
-    mode: 0600
+    mode: 0644
 
-- name: Config log rotation
-  block:
+# Tricky hack for synchronize templates and 
+# avoiding drift configuration
+- name: logrotate | tmp directory that will synchronize template
+  tempfile:
+    state: directory
+  changed_when: false
+  register: temp_file_path
 
-    - name: Create logrotate application configuration files
-      template:
-        src: application.j2
-        dest: "{{ logrotate_include_file }}/{{ item.name }}"
-        owner: "{{ logrotate_config_owner }}"
-        group: "{{ logrotate_config_group }}"
-        mode: 0600
-      with_items:
-        - '{{ logrotate_applications }}'
-      when: logrotate_applications is defined
+- name: logrotate | logrotate config files
+  template:
+    src: application.j2
+    dest: "{{ temp_file_path.path }}/{{ item.name }}"
+    owner: "{{ logrotate_config_owner }}"
+    group: "{{ logrotate_config_group }}"
+    mode: 0644
+  changed_when: false
+  with_items: "{{ logrotate_entries }}"
+  when: logrotate_entries is defined
 
-    - name: Register Ansible logrotate file name
-      set_fact:
-        logrotate_app: "\
-          {{ logrotate_app | default([]) }} + \
-          [ '{{ item.name }}' ]"
-      with_items: '{{ logrotate_applications }}'
+- name: logrotate | synchronize templates with logrotate directory
+  synchronize:
+    src: "{{ temp_file_path.path }}/"
+    dest: "{{ logrotate_conf_dir }}/"
+    delete: yes
+    checksum: yes
+    perms: no
+    times: no
 
-    - name: List all logrotate conf file
-      command: "ls -1 {{ logrotate_include_file }}"
-      register: logrotate_file
-      changed_when: false
-
-    - name: Delete logrotate conf file not managed by Ansible
-      file:
-        path: "{{ logrotate_include_file }}/{{ item }}"
-        state: absent
-      with_items:
-        - "{{ logrotate_file.stdout_lines }}"
-      when: item not in logrotate_app
-
-  when: logrotate_applications != "None"
+- name: logrotate | Delete the temporary directory
+  file:
+    path: "{{ temp_file_path.path }}"
+    state: absent
+  changed_when: false

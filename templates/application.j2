@@ -1,41 +1,7 @@
-#####################################
-##                                 ##
-## THIS FILE IS MANAGED BY ANSIBLE ##
-##                                 ##
-#####################################
+{{ ansible_managed | comment }}
 
-{% for definition in item.definitions %}
-{{ definition.logs | join(" ") }} {
-{% for option in definition.options %}
-    {{ option }}
+{{ item.path }} {
+{% for option in item.options %}
+  {{ option }}
 {% endfor %}
-{% if definition.postrotate|default([]) %}
-    postrotate
-{% for line in definition.postrotate %}
-        {{ line }}
-{% endfor %}
-    endscript
-{% endif %}
-{% if definition.preremove|default([]) %}
-    preremove
-{% for line in definition.preremove %}
-        {{ line }}
-{% endfor %}
-    endscript
-{% endif %}
-{% if definition.lastaction|default([]) %}
-    lastaction
-{% for line in definition.lastaction %}
-        {{ line }}
-{% endfor %}
-    endscript
-{% endif %}
-{% if definition.firstaction|default([]) %}
-    firstaction
-{% for line in definition.firstaction %}
-        {{ line }}
-{% endfor %}
-    endscript
-{% endif %}
 }
-{% endfor %}

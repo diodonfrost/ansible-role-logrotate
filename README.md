@@ -76,37 +76,31 @@ This role has multiple variables. The defaults for all these variables are the f
 ---
 # defaults file for ansible-role-logrotate
 
-# define logrotate crontab job
-logrotate_minute: "10"
-logrotate_hour: "2"
-logrotate_day: "*"
-logrotate_weekday: "*"
-logrotate_month: "*"
+# How often to rotate logs, either daily, weekly or monthly.
+logrotate_frequency: weekly
 
-# Add custom settings in logroate configfile.
-# Example:
-# logroate_custom_options:
-#   - noop = enabled
-#   - report = true
-#   - daemonize = false
-logrotate_custom_options: []
+# By default keep 4 weeks worth of backlogs
+logrotate_keep: 4
+
+# compress log files
+logrotate_compress: true
 
 # Set logrotate custom application configurations
+logrotate_entries: []
 # Example:
-#    logrotate_applications:
-#      - name: nginx
-#        definitions:
-#          - logs:
-#              - '/var/log/nginx/nginx.log'
-#            options:
-#              - weekly
-#              - rotate 13
-#              - compress
-#              - delaycompress
-#              - missingok
-#              - notifempty
-#              - create 0640 nginx nginx
-logrotate_applications: None
+# logrotate_entries:
+#   - name: nginx
+#     path: "/var/log/nginx/*.log"
+#     options:
+#       - weekly
+#       - compress
+#   - name: auditd
+#     path: "/var/log/audit/audit.log"
+#     options:
+#       - weekly
+#       - rotate 4
+#       - compress
+#       - size 100M
 ```
 
 
@@ -130,23 +124,24 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
 
 ```yaml
 - hosts: localhost
-  remote_user: root
   roles:
     - role: diodonfrost.logrotate
-  vars:
-    logrotate_applications:
-      - name: nginx
-        definitions:
-          - logs:
-              - '/var/log/nginx/nginx.log'
+      vars:
+        logrotate_entries:
+          - name: nginx
+            path: "/var/log/nginx/*.log"
             options:
               - weekly
-              - rotate 13
               - compress
-              - delaycompress
-              - missingok
-              - notifempty
-              - create 0640 nginx nginx
+          - name: auditd
+            path: "/var/log/audit/audit.log"
+            options:
+              - weekly
+              - rotate 4
+              - compress
+              - size 100M
+
+
 ```
 
 ## Local Testing

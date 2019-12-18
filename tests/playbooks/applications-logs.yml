@@ -2,30 +2,19 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-logrotate
-  vars:
-    logrotate_applications:
-      - name: nginx
-        definitions:
-          - logs:
-              - '/var/log/nginx/nginx.log'
+    - role: ansible-role-logrotate
+      vars:
+        logrotate_entries:
+          - name: nginx
+            path: "/var/log/nginx/*.log"
             options:
               - weekly
-              - rotate 13
               - compress
-              - delaycompress
-              - missingok
-              - notifempty
-              - create 0640 www-data adm
-      - name: wtmp
-        definitions:
-          - logs:
-              - '/var/log/wtmp'
+          - name: auditd
+            path: "/var/log/audit/audit.log"
             options:
               - weekly
-              - rotate 13
+              - rotate 4
               - compress
-              - delaycompress
-              - missingok
-              - notifempty
-              - create 0640 www-data adm
+              - size 100M
+

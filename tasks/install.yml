@@ -16,17 +16,3 @@
   package:
     name: "{{ logrotate_package }}"
     state: present
-
-- name: install crontab
-  package:
-    name: "{{ crontab_package }}"
-    state: present
-
-- name: Ensure logrotate is present in crontab
-  cron:
-    name: "logrotate"
-    minute: "{{ logrotate_minute }}"
-    hour: "{{ logrotate_hour }}"
-    weekday: "{{ logrotate_weekday }}"
-    month: "{{ logrotate_month }}"
-    job: "{{ logrotate_crontab_job }}"
