@@ -63,6 +63,9 @@ Supported platforms:
 - name: ArchLinux
   versions:
     - any
+- name: ClearLinux
+  versions:
+    - any
 - name: Gentoo
   versions:
     - stage3

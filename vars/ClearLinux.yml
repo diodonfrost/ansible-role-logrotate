@@ -1,0 +1,6 @@
+---
+logrotate_package: logrotate
+logrotate_conf_file: /etc/logrotate.conf
+logrotate_conf_dir: /etc/logrotate.d
+logrotate_config_owner: root
+logrotate_config_group: root

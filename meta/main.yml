@@ -52,6 +52,9 @@ galaxy_info:
     - name: ArchLinux
       versions:
         - any
+    - name: ClearLinux
+      versions:
+        - any
     - name: Gentoo
       versions:
         - any

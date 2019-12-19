@@ -163,6 +163,16 @@ env:
   - distribution: archlinux-rolling
     playbook: no-logs
 
+#--------------------------------
+#
+# Clearlinux
+#
+#--------------------------------
+  - distribution: clearlinux-rolling
+    playbook: applications-logs
+  - distribution: clearlinux-rolling
+    playbook: no-logs
+
 before_install:
   # Build docker container
   - 'sudo docker pull diodonfrost/${distribution}-ansible:latest'
