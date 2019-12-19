@@ -2,13 +2,16 @@
 
 logrotate_package = 'logrotate'
 logrotate_conf_file = '/etc/logrotate.conf'
+package_resource_dont_supported_generic_os = ['linux']
 
 control 'install-01' do
   impact 1.0
   title 'Logrotate install'
   desc 'Logrotate should be installed'
-  describe package(logrotate_package) do
-    it { should be_installed }
+  unless package_resource_dont_supported_generic_os.include? os.name
+    describe package(logrotate_package) do
+      it { should be_installed }
+    end
   end
 end
 
