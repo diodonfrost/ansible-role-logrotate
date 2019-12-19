@@ -134,12 +134,17 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
       vars:
         logrotate_entries:
           - name: nginx
-            path: "/var/log/nginx/*.log"
+            paths: 
+              - /var/log/nginx/acces.log
+              - /var/log/nginx/error.log
             options:
               - weekly
               - compress
-          - name: auditd
-            path: "/var/log/audit/audit.log"
+          - name: rsyslog
+            paths:
+              - /var/log/kern.log
+              - /var/log/message
+              - /var/log/debug
             options:
               - weekly
               - rotate 4
