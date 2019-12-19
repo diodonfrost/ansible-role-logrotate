@@ -134,9 +134,7 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
       vars:
         logrotate_entries:
           - name: nginx
-            paths: 
-              - /var/log/nginx/acces.log
-              - /var/log/nginx/error.log
+            paths: /var/log/nginx/*.log
             options:
               - weekly
               - compress
@@ -150,8 +148,6 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
               - rotate 4
               - compress
               - size 100M
-
-
 ```
 
 ## Local Testing
