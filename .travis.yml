@@ -144,10 +144,6 @@ env:
     playbook: applications-logs
   - distribution: opensuse-42.3
     playbook: no-logs
-  - distribution: opensuse-42.2
-    playbook: applications-logs
-  - distribution: opensuse-42.2
-    playbook: no-logs
   - distribution: opensuse-13.2
     playbook: applications-logs
   - distribution: opensuse-13.2
