@@ -1,6 +1,7 @@
-# logrotate
+# Ansible role: Logrotate
 
 [![Ansible Galaxy](https://img.shields.io/badge/galaxy-diodonfrost.logrotate-660198.svg)](https://galaxy.ansible.com/diodonfrost/logrotate)
+[![CI](https://github.com/diodonfrost/ansible-role-logrotate/workflows/CI/badge.svg)](https://github.com/diodonfrost/ansible-role-logrotate/actions)
 [![Build Status](https://travis-ci.com/diodonfrost/ansible-role-logrotate.svg?branch=master)](https://travis-ci.com/diodonfrost/ansible-role-logrotate)
 
 This role provide compliance for install and setup logrotate on your target host.
