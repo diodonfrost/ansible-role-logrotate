@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.distribution }} $ {{ matrix.playbook }}
+    name: ${{ matrix.distribution }} ${{ matrix.playbook }}
     runs-on: ubuntu-18.04
     strategy:
       fail-fast: false
