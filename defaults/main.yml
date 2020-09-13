@@ -15,7 +15,8 @@ logrotate_entries: []
 # Example:
 # logrotate_entries:
 #   - name: nginx
-#     paths: /var/log/nginx/*.log
+#     paths:
+#       - /var/log/nginx/*.log
 #     options:
 #       - weekly
 #       - compress
