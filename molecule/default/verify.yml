@@ -1,0 +1,18 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Linux | Logrotate should be present
+      command: logrotate --version
+      register: logrotate_version
+
+    - name: Linux | Logrotate should be functionnal
+      command: logrotate -f /etc/logrotate.conf
+      register: logrotate_check
+
+    - name: Linux | Verify commands outputs
+      assert:
+        that:
+          - logrotate_version.rc == 0
+          - logrotate_check.rc == 0
+        success_msg: "All tests passed"

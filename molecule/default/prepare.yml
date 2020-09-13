@@ -1,0 +1,24 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Mock log directory
+      file:
+        path: /var/log/nginx
+        owner: root
+        group: root
+        mode: '0644'
+        state: directory
+
+    - name: Mock log files
+      file:
+        path: "{{ item }}"
+        owner: root
+        group: root
+        mode: '0644'
+        state: touch
+      loop:
+        - /var/log/kern.log
+        - /var/log/message
+        - /var/log/debug
+        - /var/log/nginx/acces.log
