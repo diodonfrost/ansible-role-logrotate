@@ -3,16 +3,16 @@
   hosts: all
   tasks:
     - name: Linux | Logrotate should be present
-      command: logrotate --version
-      register: logrotate_version
+      command: logrotate --help
+      register: logrotate_status
 
     - name: Linux | Logrotate should be functionnal
       command: logrotate -f /etc/logrotate.conf
-      register: logrotate_check
+      register: logrotate_config
 
     - name: Linux | Verify commands outputs
       assert:
         that:
-          - logrotate_version.rc == 0
-          - logrotate_check.rc == 0
+          - logrotate_status.rc == 0
+          - logrotate_config.rc == 0
         success_msg: "All tests passed"
