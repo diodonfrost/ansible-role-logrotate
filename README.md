@@ -99,12 +99,13 @@ logrotate_entries: []
 # Example:
 # logrotate_entries:
 #   - name: nginx
-#     path: "/var/log/nginx/*.log"
+#     paths:
+#       - "/var/log/nginx/*.log"
 #     options:
 #       - weekly
 #       - compress
 #   - name: auditd
-#     path: "/var/log/audit/audit.log"
+#     paths: "/var/log/audit/audit.log"
 #     options:
 #       - weekly
 #       - rotate 4
@@ -138,7 +139,8 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
       vars:
         logrotate_entries:
           - name: nginx
-            paths: /var/log/nginx/*.log
+            paths:
+              - /var/log/nginx/*.log
             options:
               - weekly
               - compress
@@ -156,49 +158,37 @@ This is a sample playbook file for deploying the Ansible Galaxy logrotate role i
 
 ## Local Testing
 
-The preferred way of locally testing the role is to use Docker. You will have to install Docker on your system.
+This project uses [Molecule](http://molecule.readthedocs.io/) to aid in the
+development and testing.
 
-You can also use vagrant and Virtualbox with vagrant to run tests locally. You will have to install Virtualbox and Vagrant on your system.
-For all our tests we use test-kitchen.
+To develop or test you'll need to have installed the following:
 
-Next install test-kitchen:
-
-```shell
-# Install dependencies
-gem install bundler
-bundle install
-```
+* Linux (e.g. [Ubuntu](http://www.ubuntu.com/))
+* [Docker](https://www.docker.com/)
+* [Python](https://www.python.org/) (including python-pip)
+* [Ansible](https://www.ansible.com/)
+* [Molecule](http://molecule.readthedocs.io/)
 
 ### Testing with Docker
 
 ```shell
-# List all tests with kitchen
-kitchen list
+# Test ansible role with centos-8
+distribution=centos-8 molecule test
 
-# fast test on one machine
-kitchen test default-centos-8
+# Test ansible role with ubuntu-20.04
+distribution=ubuntu-20.04 molecule test
 
-# test on all machines
-kitchen test
+# Test ansible role with alpine-rolling
+distribution=alpine-rolling molecule test
 
-# for development, create environment
-kitchen create default-centos-8
+# Create centos-7 instance
+distribution=centos-7 molecule create
 
-# Apply ansible playbook
-kitchen converge default-centos-8
+# Apply role on centos-7 instance
+distribution=centos-7 molecule converge
 
-# Apply inspec tests
-kitchen verify default-centos-8
-```
-
-### Testing with Virtualbox
-
-```shell
-# Specify kitchen file
-set KITCHEN_YAML=.kitchen-vagrant.yml
-
-# fast test on one machine
-kitchen test default-centos-8
+# Launch tests on centos-7 instance
+distribution=centos-7 molecule verify
 ```
 
 ## License
