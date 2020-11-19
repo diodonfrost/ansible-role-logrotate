@@ -172,22 +172,22 @@ To develop or test you'll need to have installed the following:
 
 ```shell
 # Test ansible role with centos-8
-distribution=centos-8 molecule test
+image=centos:8 molecule test
 
 # Test ansible role with ubuntu-20.04
-distribution=ubuntu-20.04 molecule test
+image=ubuntu:20.04 molecule test
 
-# Test ansible role with alpine-rolling
-distribution=alpine-rolling molecule test
+# Test ansible role with alpine-latest
+image=alpine:latest molecule test
 
 # Create centos-7 instance
-distribution=centos-7 molecule create
+image=centos:7 molecule create
 
 # Apply role on centos-7 instance
-distribution=centos-7 molecule converge
+image=centos:7 molecule converge
 
 # Launch tests on centos-7 instance
-distribution=centos-7 molecule verify
+image=centos:7 molecule verify
 ```
 
 ## License
