@@ -56,5 +56,11 @@ jobs:
           pip install ansible ansible-lint molecule-docker docker
 
       - name: Test Ansible role
-        run: |
-          image=${{ matrix.image }} molecule test
+        run: molecule test
+        env:
+          image: ${{ matrix.image }}
+
+      - name: Test Ansible role with check_mode enable
+        run: molecule check
+        env: 
+          image: ${{ matrix.image }}
