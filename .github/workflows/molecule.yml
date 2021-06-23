@@ -17,6 +17,9 @@ jobs:
           - ansible-centos:8
           - ansible-centos:7
           - ansible-centos:6
+          - ansible-fedora:35
+          - ansible-fedora:34
+          - ansible-fedora:33
           - ansible-fedora:32
           - ansible-fedora:31
           - ansible-fedora:30
